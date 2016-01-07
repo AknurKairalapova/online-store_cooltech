@@ -13,7 +13,7 @@ var paths = {
     scss: './app/scss',
     allScssFiles: './app/scss/**/*.scss',
     mainScss: './app/scss/main.scss',
-    browserSync: ['./app/*.html', './app/css/*.css', './app/js/**/*.js']
+    browserSync: ['./app/templates/**/*.jade', './app/js/**/*.js']
 };
 
 
@@ -28,13 +28,19 @@ gulp.task('jade', function() {
             pretty : '\t'
         }))
         .pipe(gulp.dest(paths.html))
+        //.pipe(browserSync.reload())
 });
 
-gulp.task('server', function () {
+gulp.task('server', ['jade'],  function () {
     browserSync({
         port: 9000,
         server: { baseDir: 'app' }
     });
+    gulp.watch('./app/templates/**/*.jade', ['jade']);
+});
+
+gulp.task('browserReload', function () {
+    browserSync.reload();
 });
 
 //gulp.task('compass', function() {
@@ -48,7 +54,7 @@ gulp.task('server', function () {
 //});
 
 gulp.task('watch', function(){
-    gulp.watch(paths.jade, ['jade']);
+    gulp.watch('./app/templates/**/*.jade', ['jade']);
     //gulp.watch(paths.allScssFiles, ['compass']);
     gulp.watch(paths.browserSync).on('change', browserSync.reload);
 });

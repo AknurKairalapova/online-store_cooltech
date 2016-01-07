@@ -1,0 +1,7 @@
+.main-header
+    .container
+        +logo('/')
+        .search
+            input(type="text" placeholder="Что будем искать").search__control
+            button(value="Найти").btn.search__btn
+        +list('sitemap', sitemap, 0)

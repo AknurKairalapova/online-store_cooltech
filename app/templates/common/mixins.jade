@@ -1,0 +1,15 @@
+mixin list(className, items, activeIndex)
+    ul(class="#{className}")
+        each item, index in items
+            li(class="#{className}__item" + ((activeIndex == index) ? " active" : ''))
+                a(href="#" class="#{className}__link")= item
+
+mixin logo(src)
+    a(href="#").logo
+        img(src="#{src}" alt="COOLTECH").logo__img
+
+mixin socials(modClass)
+    ul(class="socials" + " #{modClass}")
+        each item in socials
+            li.socials__item
+                a(href="#" target="_blank" class="socials__link socials__link_#{item}")=item
