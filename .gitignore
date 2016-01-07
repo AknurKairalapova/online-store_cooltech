@@ -1,0 +1,6 @@
+.idea
+.sass-cache
+node_modules
+app/bower
+app/css
+app/*.html
